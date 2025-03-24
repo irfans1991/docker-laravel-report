@@ -1,0 +1,95 @@
+<!-- <script setup>
+    import { Link } from '@inertiajs/vue3';
+    import Navbar from '../../components/Navbar.vue';
+    import Sidebar from '../../components/Sidebar.vue';
+    import UserTable from '../../components/user/UserTable.vue';
+    import Breadcrumb  from '../../components/Breadcrumb.vue';
+
+    import { ref } from 'vue'
+    import { FwbSelect } from 'flowbite-vue'
+    import { FwbInput } from 'flowbite-vue'
+    import { FwbButton } from 'flowbite-vue'
+    import { Password } from 'primevue';
+    
+
+    const BreadCrumbThrid = "Create User"
+
+const selected = ref('')
+const Gender = [
+  { value: 'M', name: 'Male' },
+  { value: 'F', name: 'Female' },
+]
+</script> -->
+
+<!-- <template>
+
+    <Head title="Create User"/>
+
+    <Navbar/>
+    <Sidebar/>
+    <Breadcrumb>
+        <template #breadcrumb-first>
+            Users
+        </template>
+        <template #breadcrumb-third>
+            Create User
+        </template>
+        <template #breadcrumb-button>
+            <div class="flex items-center">
+                <fwb-button color="default" outline class="w-30 mr-3">Add Data</fwb-button>
+                <Link :href="route('add-role')">
+                    <fwb-button color="default" outline class="w-30">Role</fwb-button>
+                </Link>
+            </div>
+        </template>
+    </Breadcrumb>
+    <div class="flex items-center justify-center p-4 sm:ml-64 border border-slate-600 ">
+        <div class="inline-block p-4 rounded-lg mt-2 bg-gray-100 w-full">
+            <form action="">
+                <div class="flex items-center justify-center">
+                    <div class="w-1/2 pr-3">
+                        <label for="first_name" class="text-sm font-medium text-gray-900 dark:text-slate-600">First name</label>
+                        <!-- <input type="text" id="first_name" class="mb-3 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ypur Name" required /> -->
+                        <fwb-input v-model="name" placeholder="enter your first name" size="sm" />
+                    </div>
+                    <div class="w-1/2 ">
+                        <!-- <label for="first_name" class="text-sm font-medium text-gray-900 dark:text-slate-600">Select Country</label>
+                        <fwb-select v-model="selected" :options="countries" /> -->
+                        <label for="first_name" class="text-sm font-medium text-gray-900 dark:text-slate-600">Last name</label>
+                        <fwb-input v-model="name" placeholder="enter your last name" size="sm" />
+                    </div>
+                </div>
+                <div class="flex mt-5">
+                    <div class="w-1/2 pr-3">
+                        <label for="first_name" class="text-sm font-medium text-gray-900 dark:text-slate-600">Username</label>
+                        <fwb-input v-model="name" placeholder="enter your username" size="sm" />
+                    </div>
+                    <div class="w-1/2 ">
+                        <label for="first_name" class="text-sm font-medium text-gray-900 dark:text-slate-600">Email</label>
+                        <fwb-input v-model="name" placeholder="enter your Email" size="sm" />
+                    </div>
+                </div>
+                <div class="flex mt-5">
+                    <div class="w-1/2 pr-3">
+                        <label for="first_name" class="text-sm font-medium text-gray-900 dark:text-slate-600">Date Birth</label>
+                        <fwb-input v-model="name" placeholder="enter your username" size="sm" />
+                    </div>
+                    <div class="w-1/2 ">
+                        <label for="first_name" class="text-sm font-medium text-gray-900 dark:text-slate-600">Gender</label>
+                        <fwb-select v-model="selected" :options="Gender" />
+                    </div>
+                </div>
+                <div class="flex mt-5">
+                    <div class="w-1/2 pr-3">
+                        <label for="first_name" class="text-sm font-medium text-gray-900 dark:text-slate-600">Password</label>
+                        <fwb-input v-model="password" placeholder="enter your username" size="sm" />
+                    </div>
+                    <div class="w-1/2 ">
+                        <label for="first_name" class="text-sm font-medium text-gray-900 dark:text-slate-600">Confirm Password</label>
+                        <fwb-input v-model="password" placeholder="enter your username" size="sm" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</template> -->

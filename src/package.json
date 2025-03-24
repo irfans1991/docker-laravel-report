@@ -1,0 +1,36 @@
+{
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "build": "vite build",
+        "dev": "vite"
+    },
+    "devDependencies": {
+        "@vueuse/core": "^12.7.0",
+        "autoprefixer": "^10.4.20",
+        "axios": "^1.7.4",
+        "concurrently": "^9.0.1",
+        "laravel-vite-plugin": "^1.0",
+        "postcss": "^8.4.47",
+        "tailwindcss": "^3.4.13",
+        "vite": "^6.0"
+    },
+    "dependencies": {
+        "@inertiajs/inertia": "^0.11.1",
+        "@inertiajs/vue3": "^2.0.0",
+        "@primevue/forms": "^4.2.5",
+        "@primevue/themes": "^4.2.5",
+        "@vitejs/plugin-vue": "^5.2.1",
+        "dayjs": "^1.11.13",
+        "flowbite": "^3.1.2",
+        "flowbite-vue": "^0.1.7",
+        "lodash": "^4.17.21",
+        "primeicons": "^7.0.0",
+        "primevue": "^4.2.5",
+        "qrcode.vue": "^3.6.0",
+        "quill": "^2.0.3",
+        "tailwindcss-primeui": "^0.4.0",
+        "vue": "^3.5.13",
+        "vue3-google-map": "^0.21.1"
+    }
+}
