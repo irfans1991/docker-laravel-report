@@ -36,7 +36,7 @@ RUN curl -fsSL https://deb.nodesource.com/setup_21.x | bash - \
 RUN npm install -g pnpm
 
 # Copy file konfigurasi PHP jika ada
-COPY ./php/local.ini /usr/local/etc/php/conf.d/local.ini
+# COPY ./php/local.ini /usr/local/etc/php/conf.d/local.ini
 
 # Berikan permission yang benar
 RUN chown -R www-data:www-data /var/www \
