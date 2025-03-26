@@ -71,12 +71,12 @@ Route::prefix('report')->middleware('auth')->group(function () {
     });
 });
 
-Route::middleware(['auth', 'role:Administrator'])->group(function () {
-    Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
-    Route::post('/auth/register', [AuthController::class, 'store'])->name('users.store');
-    Route::delete('/users/{id}', [AuthController::class, 'destroy'])->name('users.destroy');
-    Route::get('/users/{id}/edit', [AuthController::class, 'edit'])->name('users.edit');
-    Route::put('/users/{id}/update', [AuthController::class, 'update'])->name('users.update');
+Route::middleware('auth')->group(function () {
+    Route::get('/admin', [AdminController::class, 'index'])->middleware('permission:List User')->name('admin.index');
+    Route::post('/auth/register', [AuthController::class, 'store'])->middleware('permission:Create User')->name('users.store');
+    Route::delete('/users/{id}', [AuthController::class, 'destroy'])->middleware('permission:Delete User')->name('users.destroy');
+    Route::get('/users/{id}/edit', [AuthController::class, 'edit'])->middleware('permission:Update User')->name('users.edit');
+    Route::put('/users/{id}/update', [AuthController::class, 'update'])->middleware('permission:Update User')->name('users.update');
 });
 
 Route::prefix('feedback')->group(function () {
