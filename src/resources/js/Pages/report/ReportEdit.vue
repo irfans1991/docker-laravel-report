@@ -144,7 +144,7 @@ const verifiedReport = () => {
                             <Avatar :label="getInitials(val.name)" class=" h-7 sm:h-7" shape="circle" :style="'background-color: #ece9'+getInitials(val.name)+'c; color: #2a1261'"/>
                         </div>
                         <div class="flex flex-col">
-                            <span class="font-semibold flex justify-between text-gray-600 text-sm" :style="hasPermission('List Comment') ? 'filter: blur(0px);' : 'filter: blur(3px);'">{{val.name}}<span class="text-[9px] text-gray-600 text-center">{{formatDate(val.created_at)}}</span></span>
+                            <span class="font-semibold flex justify-between text-gray-600 text-sm" :style="formReportEdit.department == $page.props.auth.user.department && hasPermission('List Comment') ? 'filter: blur(0px);' : 'filter: blur(3px);'">{{val.name}}<span class="text-[9px] text-gray-600 text-center">{{formatDate(val.created_at)}}</span></span>
                             <span class="bg-gray-300 p-1 text-sm rounded " :style="formReportEdit.department == $page.props.auth.user.department && hasPermission('List Comment') ? 'filter: blur(0px);' : 'filter: blur(3px);'" >{{val.comment}}</span>
                         </div>
                     </div>

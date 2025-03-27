@@ -159,6 +159,7 @@ const fetchUser = async (id) => {
                                     <template #empty >
                                         <h1 class="text-center">No customers found.</h1>
                                     </template>
+                                    <template #footer> In total there are {{ users.data ? users.data.length : 0 }} Users. </template>
                                 </DataTable>
                         </div>
                     </div>
