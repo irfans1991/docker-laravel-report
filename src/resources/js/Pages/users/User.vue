@@ -157,7 +157,7 @@ const fetchUser = async (id) => {
                                         </Column>
                                     <!-- Show this row when there are no users -->
                                     <template #empty >
-                                        <h1 class="text-center">No customers found.</h1>
+                                        <h1 class="text-center">No user found.</h1>
                                     </template>
                                     <template #footer> In total there are {{ users.data ? users.data.length : 0 }} Users. </template>
                                 </DataTable>

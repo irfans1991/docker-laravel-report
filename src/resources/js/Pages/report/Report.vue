@@ -189,7 +189,7 @@ watch(checked, (value) => {
                             </Column>
                         <!-- Show this row when there are no users -->
                         <template #empty >
-                            <h1 class="text-center">No customers found.</h1>
+                            <h1 class="text-center">No report found.</h1>
                         </template>
                         <template #footer> In total there are {{ reports ? reports.length : 0 }} Reports. </template>
                     </DataTable>
