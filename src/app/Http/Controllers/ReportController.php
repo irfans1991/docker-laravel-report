@@ -135,7 +135,7 @@ class ReportController extends Controller
                 'deskripsi' => 'required|max:255',
                 'department' => 'sometimes',
                 'uri' => 'required|max:255',
-                'report_date' => 'required'
+                'date_report' => 'required'
             ]);
 
             // Update the report
