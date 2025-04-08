@@ -79,7 +79,7 @@ const updateReport = () => {
         preserveScroll: true,
         onSuccess: () => {
              // formRegister.reset('password', 'password_confirmation')
-             toast.add({severity:'success', summary: 'Update report '+ report.value.title + ' Success !', life: 3000});
+             toast.add({severity:'success', summary: 'Update report '+ formReportEdit.title + ' Success !', life: 3000});
             formReports.reset()
         },
         onError: (errors) => {

@@ -142,7 +142,10 @@ class ReportController extends Controller
             $report->update($validated);
 
             // Redirect back with success message
-            return to_route('report.index');
+            // return to_route('report.index');
+            return redirect()
+            ->route('report.index')
+            ->with('success', 'Report Update successfully.');
     }
 
     /**
