@@ -67,6 +67,10 @@ const dept = ref([
     { name: 'IT', code: 'it' },
     { name: 'QC', code: 'qc' },
     { name: 'GA', code: 'ga' },
+    { name: 'TEKNISI', code: 'teknisi' },
+    { name: 'HRD', code: 'hrd' },
+    { name: 'RAW MATERIAL', code: 'RAW MATERIAL' },
+    { name: 'PRODUKSI', code: 'produksi' },
 ]);
 
 // Submit the update request
