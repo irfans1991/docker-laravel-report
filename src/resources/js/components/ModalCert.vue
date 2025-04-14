@@ -63,8 +63,8 @@ const formatDate = (date) => {
                     memindai (scan) gambar QR Code berikut :</p>
                 <div class="flex mt-20 ">
                     <p class="font-semibold text-center w-1/3">Dibuat Oleh : </p>
-                    <span class="font-semibold w-1/3 text-center ">Di periksa oleh :</span>
-                    <span class="font-semibold w-1/3  text-center">Diverifikasi Oleh :</span>
+                    <span class="font-semibold w-1/3 text-center " v-if="props.report.checked_by !== null">Di periksa oleh :</span>
+                    <span class="font-semibold w-1/3  text-center" v-if="props.report.verified_by !== null">Diverifikasi Oleh :</span>
                 </div>
                 <div class="flex mt-5 ">
                     <p class="font-semibold w-1/3"><QrcodeVue class="m-auto" :value="'Dibuat oleh : ' + props.report.name + '\n pada tanggal ' + formatDate(props.report.date_report)" :size="80" level="H" /></p>
