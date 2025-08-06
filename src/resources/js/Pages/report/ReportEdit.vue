@@ -57,6 +57,7 @@ const formReportEdit = useForm({
     department: report.value?.department || "",
     uri: report.value?.uri || "",
     date_report: report.value?.date_report || "",
+    revision_date: report.value?.revision_date || "",
 });
 
 const formatDate = (date) => {
@@ -76,7 +77,7 @@ const dept = ref([
 // Submit the update request
 const updateReport = () => {
     formReportEdit.put(route('report.update', report.value.id), {
-        preserveScroll: true,
+        // preserveScroll: true,
         onSuccess: () => {
              // formRegister.reset('password', 'password_confirmation')
              toast.add({severity:'success', summary: 'Update report '+ formReportEdit.title + ' Success !', life: 3000});
@@ -179,6 +180,13 @@ const verifiedReport = () => {
                             <label for="on_label">Report Date</label>
                         </FloatLabel>
                     </div>
+                    <div class="flex p-2 w-full items-center border border-gray-300">
+                        <span class="font-bold w-1/2">Revision Date <span class="text-red-500">*</span></span>
+                        <FloatLabel variant="on" class="w-full">
+                            <DatePicker v-model="formReportEdit.revision_date" inputId="on_label" showIcon iconDisplay="input" class="w-full"/>
+                            <label for="on_label">Revision Date</label>
+                        </FloatLabel>
+                    </div>
                     <div class="flex p-2 w-full items-center border border-gray-300 bg-gray-200">
                         <span class="font-bold w-1/2">Description Document</span>
                         <TextArea  v-model="formReportEdit.deskripsi" type="text" name="Deskripsi"  class="w-full" :message="formReportEdit.errors.deskripsi" />
@@ -196,7 +204,7 @@ const verifiedReport = () => {
                     </div>
                     <div class="flex justify-end gap-2 mt-2 p-2">
                         <Button label="Checked" severity="warn" @click="checkedReport" :disabled="page.props.report.checked_by !== null" />
-                        <Button label="Verified" severity="info" @click="verifiedReport" :disabled="page.props.report.verified_by !== null"/>
+                        <Button label="Verified" severity="info" @click="verifiedReport" :disabled="page.props.report.verified_by !== null || page.props.report.checked_by === null"/>
                         <Button label="Update" severity="success" type="submit"/>
                         <Button label="Clear" severity="clear" @click="clearInput"/>
                     </div>

@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('department');
             $table->string('uri');
             $table->date('date_report');
+            $table->date('revision_date')->nullable();
             $table->string('checked_by')->nullable();
             $table->date('date_checked')->nullable();
             $table->string('verified_by')->nullable();

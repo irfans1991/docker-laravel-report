@@ -104,16 +104,16 @@ watch(checked, (value) => {
   router.get(route('report.index'), { verified: value, search: search.value, start_date: dates.value[0], end_date: dates.value[1] }, { preserveState: true });
 });
 
-onMounted(() => {
-    if (page.props.flash?.success) {
-        toast.add({
-            severity: 'success',
-            summary: 'Success!',
-            detail: page.props.flash.success,
-            life: 3000
-        })
-    }
-})
+// onMounted(() => {
+//     if (page.props.flash?.success) {
+//         toast.add({
+//             severity: 'success',
+//             summary: 'Success!',
+//             detail: page.props.flash.success,
+//             life: 3000
+//         })
+//     }
+// })
 
 </script>
 

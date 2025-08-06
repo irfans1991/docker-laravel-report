@@ -135,17 +135,16 @@ class ReportController extends Controller
                 'deskripsi' => 'required|max:255',
                 'department' => 'sometimes',
                 'uri' => 'required|max:255',
-                'date_report' => 'required'
+                'date_report' => 'required',
+                'revision_date' => 'sometimes',
             ]);
 
             // Update the report
             $report->update($validated);
 
             // Redirect back with success message
-            // return to_route('report.index');
-            return redirect()
-            ->route('report.index')
-            ->with('success', 'Report Update successfully.');
+            return to_route('report.index');
+            // return redirect()->back()->with('success', 'Record updated successfully.');
     }
 
     /**

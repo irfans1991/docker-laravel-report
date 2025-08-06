@@ -15,6 +15,16 @@ const visible = ref(false);
 const formatDate = (date) => {
     return dayjs(date).format("DD-MM-YYYY");
 };
+
+const optionDate = (report_date, revision_date) => {
+    if (revision_date != null){
+        return dayjs(revision_date).format("DD-MM-YYYY");
+    }else{
+        
+        return dayjs(report_date).format("DD-MM-YYYY");
+    }
+
+}
 </script>
 
 <template>
@@ -67,9 +77,9 @@ const formatDate = (date) => {
                     <span class="font-semibold w-1/3  text-center" v-if="props.report.verified_by !== null">Diverifikasi Oleh :</span>
                 </div>
                 <div class="flex mt-5 ">
-                    <p class="font-semibold w-1/3"><QrcodeVue class="m-auto" :value="'Dibuat oleh : ' + props.report.name + '\n pada tanggal ' + formatDate(props.report.date_report)" :size="80" level="H" /></p>
-                    <p class="font-semibold w-1/3" v-if="props.report.checked_by !== null"><QrcodeVue class="m-auto" :value="'Diperiksa oleh : ' + props.report.checked_by + '\n pada tanggal ' + formatDate(props.report.date_checked)" :size="80" level="H" /></p>
-                    <p class="font-semibold w-1/3" v-if="props.report.verified_by !== null"><QrcodeVue class="m-auto" :value="'Disetujui oleh : ' + props.report.verified_by + '\n pada tanggal ' + formatDate(props.report.date_verified)" :size="80" level="H" /></p>
+                    <p class="font-semibold w-1/3"><QrcodeVue class="m-auto" :value="'Dibuat oleh : ' + props.report.name + '\n pada tanggal ' + optionDate(props.report.date_report, props.report.revision_date)" :size="80" level="H" /></p>
+                    <p class="font-semibold w-1/3" v-if="props.report.checked_by !== null"><QrcodeVue class="m-auto" :value="'Diperiksa oleh : ' + props.report.checked_by + '\n pada tanggal ' + optionDate(props.report.date_report, props.report.revision_date)" :size="80" level="H" /></p>
+                    <p class="font-semibold w-1/3" v-if="props.report.verified_by !== null"><QrcodeVue class="m-auto" :value="'Disetujui oleh : ' + props.report.verified_by + '\n pada tanggal ' + optionDate(props.report.date_report, props.report.revision_date)" :size="80" level="H" /></p>
                 </div>
             </div>
         </Dialog>

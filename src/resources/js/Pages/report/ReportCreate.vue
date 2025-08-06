@@ -36,8 +36,9 @@ const dept = ref([
         { name: 'GA', code: 'ga' },
         { name: 'TEKNISI', code: 'teknisi' },
         { name: 'HRD', code: 'hrd' },
-        { name: 'RAW MATERIAL', code: 'RAW MATERIAL' },
+        { name: 'RAW MATERIAL', code: 'raw material' },
         { name: 'PRODUKSI', code: 'produksi' },
+        { name: 'WAREHOUSE', code: 'warehouse' },
     ]);
 
 const formReports = useForm({
