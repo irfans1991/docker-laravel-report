@@ -33,10 +33,11 @@ const show = ref(true)
 const dept = ref([
         { name: 'IT', code: 'it' },
         { name: 'QC', code: 'qc' },
+        { name: 'QA', code: 'qa' },
         { name: 'GA', code: 'ga' },
         { name: 'TEKNISI', code: 'teknisi' },
         { name: 'HRD', code: 'hrd' },
-        { name: 'RAW MATERIAL', code: 'raw material' },
+        { name: 'RAW MATERIAL', code: 'raw_material' },
         { name: 'PRODUKSI', code: 'produksi' },
         { name: 'WAREHOUSE', code: 'warehouse' },
     ]);
