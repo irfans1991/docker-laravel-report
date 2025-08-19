@@ -35,7 +35,7 @@ onUnmounted(() => {
         <Message severity="warn" closable>
                 <i class="pi pi-info-circle text-blue-900"><span class="text-md pl-2 text-blue-900 font-sans">Informasi</span></i>
                 <p class="text-md text-blue-900">Selamat Datang, <span class="font-semibold italic">{{ $page.props.auth.user.firstname }}</span> di Aplikasi E-report PT. Chen Woo Fishery </p>
-                <p class="text-md text-blue-900">Anda Memiliki Laporan Pending : {{ countPendingDept }} Laporan, dari Departement {{ $page.props.auth.user.department }} </p>
+                <p class="text-md text-blue-900">Anda Memiliki Laporan Pending : {{ countPendingDept }} dan Laporan yang butuh Verifikasi : {{ countPending }}, dari Departement {{ $page.props.auth.user.department }} </p>
         </Message>
     </div>
       <div class="flex justify-between">

@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use App\Models\User;
 use Inertia\Inertia;
 use App\Models\Report;
 use App\Models\logHistory;
 use App\Models\noDocument;
 use Illuminate\Http\Request;
+use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\ReportResource;
 use Illuminate\Support\Facades\Validator;
@@ -115,10 +117,12 @@ class ReportController extends Controller
         $report = Report::findOrFail($id);
         //hasMany
         $comment = logHistory::where('report_id', $id)->get();
+         $users = UserResource::collection(User::all())->resolve();
         // $comment = logHistory::findOrFail($id);
         return Inertia::render('report/ReportEdit',[
             'report' => $report,
-            'comment' => $comment
+            'comment' => $comment,
+            'user' => $users
         ]);
     }
 
@@ -137,10 +141,20 @@ class ReportController extends Controller
                 'uri' => 'required|max:255',
                 'date_report' => 'required',
                 'revision_date' => 'sometimes',
+                'auditor_by' => 'sometimes|array',
+                'auditor_by.*' => 'string',
+                'auditee_by' => 'sometimes|array',
+                'auditee_by.*' => 'string',
             ]);
 
             // Update the report
-            $report->update($validated);
+            $report->update([
+                $validated,
+                'auditor_by' => implode(',', $validated['auditor_by'] ?? []),
+                'auditee_by' => implode(',', $validated['auditee_by'] ?? []),
+                'date_auditor' => Carbon::now(),
+                'date_auditee' => Carbon::now(),
+            ]);
 
             // Redirect back with success message
             return to_route('report.index');

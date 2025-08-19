@@ -17,6 +17,9 @@
     import Select from 'primevue/select';
     import FloatLabel from 'primevue/floatlabel';
     import DatePicker from 'primevue/datepicker';
+    import MultiSelect from 'primevue/multiselect';
+    import { formatDateToMakassar } from "../../components/composables/formatDatePicker";
+
 
  
     //permission
@@ -50,7 +53,6 @@ const saveComment = () => {
 }
 
 const formReportEdit = useForm({
-
     title: report.value?.title || "",
     no_document: report.value?.no_document || "",
     deskripsi: report.value?.deskripsi || "",
@@ -58,8 +60,12 @@ const formReportEdit = useForm({
     uri: report.value?.uri || "",
     date_report: report.value?.date_report || "",
     revision_date: report.value?.revision_date || "",
+    auditor_by: report.value?.auditor_by || "",
+    auditee_by: report.value?.auditee_by || "",
 });
 
+
+formatDateToMakassar(formReportEdit.revision_date);
 const formatDate = (date) => {
     return dayjs(date).format("DD-MM-YYYY HH:mm:ss");
     }
@@ -67,15 +73,18 @@ const formatDate = (date) => {
 const dept = ref([
     { name: 'IT', code: 'it' },
     { name: 'QC', code: 'qc' },
+    { name: 'QA', code: 'qa' },
     { name: 'GA', code: 'ga' },
     { name: 'TEKNISI', code: 'teknisi' },
     { name: 'HRD', code: 'hrd' },
-    { name: 'RAW MATERIAL', code: 'RAW MATERIAL' },
+    { name: 'RAW MATERIAL', code: 'raw_material' },
     { name: 'PRODUKSI', code: 'produksi' },
+    { name: 'WAREHOUSE', code: 'warehouse' },
 ]);
 
 // Submit the update request
 const updateReport = () => {
+
     formReportEdit.put(route('report.update', report.value.id), {
         // preserveScroll: true,
         onSuccess: () => {
@@ -115,6 +124,19 @@ const verifiedReport = () => {
     });
     toast.add({severity:'success', summary: 'Verivied report '+ report.value.title + ' Success !', life: 3000});
 };
+
+
+// tag users
+const model = defineModel({
+    type: null,
+    required: true
+})
+
+const props = defineProps({
+    user: Array
+})
+
+const users = ref(props.user);
 
 </script>
 
@@ -169,18 +191,18 @@ const verifiedReport = () => {
                         <span class="font-bold w-1/2">Title</span>
                         <TextInput type="text" v-model="formReportEdit.title" name="Title" placeholderText="Jhon Doe" class="w-full" disabled="disabled" :message="formReportEdit.errors.title" />
                     </div>
-                    <div class="flex p-2 w-full items-center border border-gray-300">
+                    <div class="flex p-2 w-full items-center border bg-gray-200">
                         <span class="font-bold w-1/2">No Document</span>
                         <TextInput type="text" v-model="formReportEdit.no_document" name="no document" placeholderText="Jhon Doe" class="w-full" :message="formReportEdit.errors.no_document"/>
                     </div>
                     <div class="flex p-2 w-full items-center border border-gray-300">
                         <span class="font-bold w-1/2">Report Date <span class="text-red-500">*</span></span>
                         <FloatLabel variant="on" class="w-full">
-                            <DatePicker v-model="formReportEdit.date_report" inputId="on_label" showIcon iconDisplay="input" class="w-full"/>
+                            <DatePicker v-model="formReportEdit.date_report" inputId="on_label" showIcon iconDisplay="input" class="w-full" disabled/>
                             <label for="on_label">Report Date</label>
                         </FloatLabel>
                     </div>
-                    <div class="flex p-2 w-full items-center border border-gray-300">
+                    <div class="flex p-2 w-full items-center border bg-gray-200">
                         <span class="font-bold w-1/2">Revision Date <span class="text-red-500">*</span></span>
                         <FloatLabel variant="on" class="w-full">
                             <DatePicker v-model="formReportEdit.revision_date" inputId="on_label" showIcon iconDisplay="input" class="w-full"/>
@@ -191,7 +213,7 @@ const verifiedReport = () => {
                         <span class="font-bold w-1/2">Description Document</span>
                         <TextArea  v-model="formReportEdit.deskripsi" type="text" name="Deskripsi"  class="w-full" :message="formReportEdit.errors.deskripsi" />
                     </div>
-                    <div class="flex p-2 w-full items-center border border-gray-300">
+                    <div class="flex p-2 w-full items-center border bg-gray-200">
                         <span class="font-bold w-1/2">Select Department</span>
                         <Select :options="dept" v-model="formReportEdit.department" optionLabel="name" optionValue="name" placeholder="Select Department" class="w-full" :message="formReportEdit.errors.department" fluid/>
                     </div>
@@ -200,6 +222,13 @@ const verifiedReport = () => {
                         <div class="flex flex-col w-full">
                             <TextInput type="text" name="https://example.net/" v-model="formReportEdit.uri" :message="formReportEdit.errors.uri" />
                             <span class="pl-2 text-orange-800 text-xs">Wajib menyetarakan url dalam bentuk docs/pdf/xsls.</span>
+                        </div>
+                    </div>
+                    <div class="flex p-2 w-full items-center border bg-gray-200">
+                        <span class="font-bold w-1/2">Auditee</span>
+                        <div class="flex flex-col w-full">
+                            <MultiSelect v-model="model" :options="users" optionLabel="firstname" display="chip" filter placeholder="Select Permission"
+                            :maxSelectedLabels="3" class="w-full md:w-64" />
                         </div>
                     </div>
                     <div class="flex justify-end gap-2 mt-2 p-2">

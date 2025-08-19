@@ -12,9 +12,9 @@ class Report extends Model
     //
     use HasUuids;
     protected $table = 'reports';
-    protected $fillable = ['name','title','no_document' ,'deskripsi', 'status', 
-    'department', 'uri', 'date_report','revision_date','checked_by', 'date_checked', 
-    'verified_by', 'date_verified', 'deleted_by', 'deleted_at'];
+   protected $fillable = ['name','title','no_document' ,'deskripsi', 'status', 
+    'department', 'uri', 'date_report','checked_by', 'date_checked', 
+    'verified_by', 'date_verified', 'auditor_by', 'date_auditor', 'auditee_by', 'date_auditee', 'deleted_by', 'deleted_at'];
 
     public function logHistory(): HasMany
     {

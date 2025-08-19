@@ -25,12 +25,20 @@ Route::get('/403', function () {
 
 
 Route::middleware('auth')->group(function () {
-    Route::get('/', function () {
+     Route::get('/', function () {
         // count report where deleted_at not null
         $countReport = Report::whereNull('deleted_at')->count();
         $countVerified = Report::where('verified_by', '!=', null)->whereNull('deleted_at')->count();
-        $countPending = Report::where('verified_by', '=', null)->whereNull('deleted_at')->count();
+        $countPending = Report::whereNull('verified_by')
+                        ->where('checked_by', '!=', null)
+                        ->whereNull('deleted_at')
+                        ->count();
+        $countChecked = Report::whereNull('verified_by')
+                        ->where('checked_by', '!=', null)
+                        ->whereNull('deleted_at')
+                        ->count();
         $countPendingDept = Report::whereNull('verified_by')
+        ->where('checked_by', '!=', null)
         ->whereNull('deleted_at')
         ->where('department', Auth::user()->dept)
         ->count();
@@ -38,6 +46,7 @@ Route::middleware('auth')->group(function () {
             'countReport' => $countReport,
             'countVerified' => $countVerified,
             'countPending' => $countPending,
+            'countChecked' => $countChecked,
             'countPendingDept' => $countPendingDept
         ]);
     })->name('dashboard');

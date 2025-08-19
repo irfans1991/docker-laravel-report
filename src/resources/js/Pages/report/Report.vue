@@ -173,7 +173,8 @@ watch(checked, (value) => {
                             <Column field="department" header="Department" style="width: 10%"></Column>
                             <Column field="" header="status" style="width: 10%">
                                 <template #body="slotProps">
-                                    <Badge v-if="slotProps.data.verified_by === null" value="Pending" severity="warn"/>
+                                    <Badge v-if="slotProps.data.verified_by === null && slotProps.data.checked_by === null" value="Pending" severity="warn"/>
+                                    <Badge v-else-if="slotProps.data.checked_by !== null && slotProps.data.verified_by === null" value="Checked" severity="info"/>
                                     <Badge v-else value="Verified" severity="success"/>
                                 </template>
                             </Column>
