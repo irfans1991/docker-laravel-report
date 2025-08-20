@@ -153,9 +153,10 @@ class ReportController extends Controller
                 'date_auditor' => Carbon::now(),
                 'date_auditee' => Carbon::now(),
             ]);
-
+            
             $report->update([
                 $validated,
+                'revision_date' => $request->revision_date,
             ]);
 
             // Redirect back with success message

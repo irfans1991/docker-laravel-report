@@ -59,7 +59,7 @@ const formReportEdit = useForm({
     department: report.value?.department || "",
     uri: report.value?.uri || "",
     date_report: report.value?.date_report || "",
-    revision_date: report.value?.revision_date || "",
+    revision_date: report.value?.revision_date ? new Date(report.value.revision_date) : null,
     auditor_by: report.value?.auditor_by || [], // ✅ ambil dari DB (array)
     auditee_by: report.value?.auditee_by || [], // ✅ ambil dari DB (array)
 });
@@ -84,7 +84,7 @@ const dept = ref([
 
 // Submit the update request
 const updateReport = () => {
-
+    formReportEdit.revision_date = formatDateToMakassar(formReportEdit.revision_date);
     formReportEdit.put(route('report.update', report.value.id), {
         // preserveScroll: true,
         onSuccess: () => {
@@ -179,7 +179,7 @@ const users = ref(props.user);
                 
             </template>
             <template #content-data>
-                Add Report
+                Edit Report
             </template>
             <template #content-body-data>
                 <Form @submit="updateReport">

@@ -65,6 +65,9 @@ onMounted(() => {
                             <Link :href="route('feedback.index')" class="block py-2 px-3 text-gray-500 border-b rounded  hover:bg-blue-900  lg:border-0 lg:hover:text-white " :class="{'bg-blue-900 text-white': $page.component === 'feedback/Feedback'}">Feedback</Link>
                         </li>
                         <li>
+                            <Link :href="route('feedback.index')" class="block py-2 px-3 text-gray-500 border-b rounded  hover:bg-blue-900  lg:border-0 lg:hover:text-white " :class="{'bg-blue-900 text-white': $page.component === 'summary/Summary'}">Summary</Link>
+                        </li>
+                        <li>
                             <Link :href="route('about')" class="block py-2 px-3 text-gray-500 border-b rounded  hover:bg-blue-900  lg:border-0 lg:hover:text-white " :class="{'bg-blue-900 text-white': $page.component === 'About'}">Contact</Link>
                         </li>
                     </ul>
