@@ -9,6 +9,7 @@ use App\Models\Report;
 use App\Models\logHistory;
 use App\Models\noDocument;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\ReportResource;
@@ -142,18 +143,19 @@ class ReportController extends Controller
                 'date_report' => 'required',
                 'revision_date' => 'sometimes',
                 'auditor_by' => 'sometimes|array',
-                'auditor_by.*' => 'string',
                 'auditee_by' => 'sometimes|array',
-                'auditee_by.*' => 'string',
             ]);
 
             // Update the report
-            $report->update([
-                $validated,
-                'auditor_by' => implode(',', $validated['auditor_by'] ?? []),
-                'auditee_by' => implode(',', $validated['auditee_by'] ?? []),
+            DB::table('reports')->update([
+                'auditor_by'   => json_encode($request->auditor_by),
+                'auditee_by'   => json_encode($request->auditee_by),
                 'date_auditor' => Carbon::now(),
                 'date_auditee' => Carbon::now(),
+            ]);
+
+            $report->update([
+                $validated,
             ]);
 
             // Redirect back with success message

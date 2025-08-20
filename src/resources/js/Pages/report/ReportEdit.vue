@@ -60,8 +60,8 @@ const formReportEdit = useForm({
     uri: report.value?.uri || "",
     date_report: report.value?.date_report || "",
     revision_date: report.value?.revision_date || "",
-    auditor_by: report.value?.auditor_by || "",
-    auditee_by: report.value?.auditee_by || "",
+    auditor_by: report.value?.auditor_by || [], // ✅ ambil dari DB (array)
+    auditee_by: report.value?.auditee_by || [], // ✅ ambil dari DB (array)
 });
 
 
@@ -191,7 +191,7 @@ const users = ref(props.user);
                         <span class="font-bold w-1/2">Title</span>
                         <TextInput type="text" v-model="formReportEdit.title" name="Title" placeholderText="Jhon Doe" class="w-full" disabled="disabled" :message="formReportEdit.errors.title" />
                     </div>
-                    <div class="flex p-2 w-full items-center border bg-gray-200">
+                    <div class="flex p-2 w-full items-center border border-gray-300 bg-gray-200">
                         <span class="font-bold w-1/2">No Document</span>
                         <TextInput type="text" v-model="formReportEdit.no_document" name="no document" placeholderText="Jhon Doe" class="w-full" :message="formReportEdit.errors.no_document"/>
                     </div>
@@ -202,33 +202,40 @@ const users = ref(props.user);
                             <label for="on_label">Report Date</label>
                         </FloatLabel>
                     </div>
-                    <div class="flex p-2 w-full items-center border bg-gray-200">
+                    <div class="flex p-2 w-full items-center border border-gray-300 bg-gray-200">
                         <span class="font-bold w-1/2">Revision Date <span class="text-red-500">*</span></span>
                         <FloatLabel variant="on" class="w-full">
                             <DatePicker v-model="formReportEdit.revision_date" inputId="on_label" showIcon iconDisplay="input" class="w-full"/>
                             <label for="on_label">Revision Date</label>
                         </FloatLabel>
                     </div>
-                    <div class="flex p-2 w-full items-center border border-gray-300 bg-gray-200">
+                    <div class="flex p-2 w-full items-center border border-gray-300">
                         <span class="font-bold w-1/2">Description Document</span>
                         <TextArea  v-model="formReportEdit.deskripsi" type="text" name="Deskripsi"  class="w-full" :message="formReportEdit.errors.deskripsi" />
                     </div>
-                    <div class="flex p-2 w-full items-center border bg-gray-200">
+                    <div class="flex p-2 w-full items-center border border-gray-300 bg-gray-200">
                         <span class="font-bold w-1/2">Select Department</span>
                         <Select :options="dept" v-model="formReportEdit.department" optionLabel="name" optionValue="name" placeholder="Select Department" class="w-full" :message="formReportEdit.errors.department" fluid/>
                     </div>
-                    <div class="flex p-2 w-full items-center border border-gray-300 bg-gray-200">
+                    <div class="flex p-2 w-full items-center border border-gray-300">
                         <span class="font-bold w-1/2">Uri</span>
                         <div class="flex flex-col w-full">
                             <TextInput type="text" name="https://example.net/" v-model="formReportEdit.uri" :message="formReportEdit.errors.uri" />
                             <span class="pl-2 text-orange-800 text-xs">Wajib menyetarakan url dalam bentuk docs/pdf/xsls.</span>
                         </div>
                     </div>
-                    <div class="flex p-2 w-full items-center border bg-gray-200">
+                    <div class="flex p-2 w-full items-center border border-gray-300 bg-gray-200">
+                        <span class="font-bold w-1/2">Auditor</span>
+                        <div class="flex flex-col w-full">
+                            <MultiSelect v-model="formReportEdit.auditor_by" :options="users" optionLabel="firstname" optionValue="firstname" display="chip" filter placeholder="Select Auditor"
+                            :maxSelectedLabels="3" class="w-full" />
+                        </div>
+                    </div>
+                    <div class="flex p-2 w-full items-center border border-gray-300">
                         <span class="font-bold w-1/2">Auditee</span>
                         <div class="flex flex-col w-full">
-                            <MultiSelect v-model="model" :options="users" optionLabel="firstname" display="chip" filter placeholder="Select Permission"
-                            :maxSelectedLabels="3" class="w-full md:w-64" />
+                            <MultiSelect v-model="formReportEdit.auditee_by" :options="users" optionLabel="firstname" optionValue="firstname" display="chip" filter placeholder="Select Auditee"
+                            :maxSelectedLabels="3" class="w-full" />
                         </div>
                     </div>
                     <div class="flex justify-end gap-2 mt-2 p-2">

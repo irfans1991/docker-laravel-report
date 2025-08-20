@@ -73,17 +73,29 @@ const optionDate = (report_date, revision_date) => {
                     memindai (scan) gambar QR Code berikut :</p>
                 <div class="flex mt-20 ">
                     <p class="font-semibold text-center w-1/3">Dibuat Oleh : </p>
-                     <span class="font-semibold w-1/3 text-center " v-if="props.report.checked_by !== null">Di periksa oleh :</span>
-                    <span class="font-semibold w-1/3  text-center" v-if="props.report.verified_by !== null">Diverifikasi Oleh :</span>
-                    <span class="font-semibold w-1/3  text-center" v-if="props.report.auditor_by !== null">Auditor Oleh :</span>
-                    <span class="font-semibold w-1/3  text-center" v-if="props.report.auditee_by !== null">Auditee Oleh :</span>
+                     <span class="font-semibold w-1/3 text-center " v-if="props.report.checked_by !== null &&
+                     (!props.report.auditor_by || props.report.auditor_by.length === 0) 
+                     && (!props.report.auditee_by || props.report.auditee_by.length === 0)
+                     ">Di periksa oleh :</span>
+                    <span class="font-semibold w-1/3  text-center" v-if="props.report.verified_by !== null 
+                    && (!props.report.auditor_by || props.report.auditor_by.length === 0) 
+                    && (!props.report.auditee_by || props.report.auditee_by.length === 0)
+                    ">Diverifikasi Oleh :</span>
+                    <span class="font-semibold w-1/3  text-center" v-if="props.report.auditor_by && props.report.auditor_by.length > 0">Auditor Oleh :</span>
+                    <span class="font-semibold w-1/3  text-center" v-if="props.report.auditee_by && props.report.auditee_by.length > 0">Auditee Oleh :</span>
                 </div>
                 <div class="flex mt-5 ">
                     <p class="font-semibold w-1/3"><QrcodeVue class="m-auto" :value="'Dibuat oleh : ' + props.report.name + '\n pada tanggal ' + optionDate(props.report.date_report, props.report.revision_date)" :size="80" level="H" /></p>
-                    <p class="font-semibold w-1/3" v-if="props.report.checked_by !== null"><QrcodeVue class="m-auto" :value="'Diperiksa oleh : ' + props.report.checked_by + '\n pada tanggal ' + optionDate(props.report.date_report, props.report.revision_date)" :size="80" level="H" /></p>
-                    <p class="font-semibold w-1/3" v-if="props.report.verified_by !== null"><QrcodeVue class="m-auto" :value="'Disetujui oleh : ' + props.report.verified_by + '\n pada tanggal ' + optionDate(props.report.date_report, props.report.revision_date)" :size="80" level="H" /></p>
-                    <p class="font-semibold w-1/3" v-if="props.report.auditor_by !== null"><QrcodeVue class="m-auto" :value="'Auditor oleh : ' + props.report.auditor_by + '\n pada tanggal ' + optionDate(props.report.date_auditor, props.report.revision_date)" :size="80" level="H" /></p>
-                    <p class="font-semibold w-1/3" v-if="props.report.auditee_by !== null"><QrcodeVue class="m-auto" :value="'Auditee oleh : ' + props.report.auditee_by + '\n pada tanggal ' + optionDate(props.report.date_auditee, props.report.revision_date)" :size="80" level="H" /></p>
+                    <p class="font-semibold w-1/3" v-if="props.report.checked_by !== null 
+                    && (!props.report.auditor_by || props.report.auditor_by.length === 0) 
+                    && (!props.report.auditee_by || props.report.auditee_by.length === 0)
+                    "><QrcodeVue class="m-auto" :value="'Diperiksa oleh : ' + props.report.checked_by + '\n pada tanggal ' + optionDate(props.report.date_report, props.report.revision_date)" :size="80" level="H" /></p>
+                    <p class="font-semibold w-1/3" v-if="props.report.verified_by !== null 
+                    && (!props.report.auditor_by || props.report.auditor_by.length === 0) 
+                    && (!props.report.auditee_by || props.report.auditee_by.length === 0)
+                    "><QrcodeVue class="m-auto" :value="'Disetujui oleh : ' + props.report.verified_by + '\n pada tanggal ' + optionDate(props.report.date_report, props.report.revision_date)" :size="80" level="H" /></p>
+                    <p class="font-semibold w-1/3" v-if="props.report.auditor_by && props.report.auditor_by.length > 0"><QrcodeVue class="m-auto" :value="'Auditor oleh : ' + props.report.auditor_by + '\n pada tanggal ' + optionDate(props.report.date_auditor, props.report.revision_date)" :size="80" level="H" /></p>
+                    <p class="font-semibold w-1/3" v-if="props.report.auditee_by && props.report.auditee_by.length > 0"><QrcodeVue class="m-auto" :value="'Auditee oleh : ' + props.report.auditee_by + '\n pada tanggal ' + optionDate(props.report.date_auditee, props.report.revision_date)" :size="80" level="H" /></p>
                 </div>
             </div>
         </Dialog>

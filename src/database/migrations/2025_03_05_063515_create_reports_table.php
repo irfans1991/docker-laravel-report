@@ -26,9 +26,9 @@ return new class extends Migration
             $table->date('date_checked')->nullable();
             $table->string('verified_by')->nullable();
             $table->date('date_verified')->nullable();
-            $table->string('auditor_by')->nullable();
+            $table->json('auditor_by')->nullable();
             $table->date('date_auditor')->nullable();
-            $table->string('auditee_by')->nullable();
+            $table->json('auditee_by')->nullable();
             $table->date('date_auditee')->nullable();
             $table->string('deleted_by')->nullable();
             $table->dateTime('deleted_at')->nullable();

@@ -14,7 +14,7 @@ import Toast from 'primevue/toast';
 import { useToast } from "primevue/usetoast";
 import FloatLabel from 'primevue/floatlabel';
 import DatePicker from 'primevue/datepicker';
-import { formatDateToMakassar } from "../../components/composables/shortDate"
+import { formatDateToMakassar } from "../../components/composables/formatDatePicker"
 
 // Get Data Reports
 const page  = usePage(); // Get data from Laravel
@@ -106,7 +106,7 @@ const clearInput = () => {
                             <span class="font-bold w-1/2">Title <span class="text-red-500">*</span></span>
                             <TextInput type="text" v-model="formReports.title" name="Title" placeholderText="Jhon Doe" class="w-full" :message="formReports.errors.title"/>
                         </div>
-                        <div class="flex p-2 w-full items-center border border-gray-200">
+                        <div class="flex p-2 w-full items-center border border-gray-300 bg-gray-200">
                             <span class="font-bold w-1/2">No Document <span class="text-red-500">*</span></span>
                             <FloatLabel class="w-full" variant="on">
                                 <Select v-model="formReports.no_document" editable :options="doc" optionValue="no_document" optionLabel="no_document" class="w-full" :message="formReports.errors.no_document"/>
