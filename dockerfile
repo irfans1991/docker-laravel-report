@@ -25,8 +25,11 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install pdo pdo_mysql mbstring exif pcntl bcmath gd zip opcache \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
+
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+
 
 # Install Node.js 21 dari NodeSource
 RUN curl -fsSL https://deb.nodesource.com/setup_21.x | bash - \
