@@ -75,6 +75,8 @@ const dept = ref([
     { name: 'QC', code: 'qc' },
     { name: 'QA', code: 'qa' },
     { name: 'GA', code: 'ga' },
+    { name: 'EKSPOR', code: 'ekspor' },
+    { name: 'SECURITY', code: 'security' },
     { name: 'TEKNISI', code: 'teknisi' },
     { name: 'HRD', code: 'hrd' },
     { name: 'RAW MATERIAL', code: 'raw_material' },
