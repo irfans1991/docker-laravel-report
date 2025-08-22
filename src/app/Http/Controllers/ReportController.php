@@ -118,7 +118,7 @@ class ReportController extends Controller
         $report = Report::findOrFail($id);
         //hasMany
         $comment = logHistory::where('report_id', $id)->get();
-         $users = UserResource::collection(User::all())->resolve();
+         $users = UserResource::collection(User::whereNull('deleted_by')->get())->resolve();
         // $comment = logHistory::findOrFail($id);
         return Inertia::render('report/ReportEdit',[
             'report' => $report,
