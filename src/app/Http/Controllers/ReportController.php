@@ -25,6 +25,7 @@ class ReportController extends Controller
     {
 
         $query = Report::query()->whereNull('deleted_at'); // Exclude deleted records
+        $logHistory = logHistory::latest()->get();
 
         if ($request->has('verified') && $request->verified === 'true') {
             $query->where('verified_by', '=', null);
@@ -43,6 +44,7 @@ class ReportController extends Controller
         return Inertia::render('report/Report', [
             'reports' => $reports,
             'filters' => $request->only(['start_date', 'end_date', 'search', 'verified']),
+            'logHistory' => $logHistory
         ]);
             }
 

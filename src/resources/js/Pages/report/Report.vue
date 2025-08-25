@@ -28,6 +28,8 @@ const confirm = useConfirm();
 // Get Data Reports
 const page  = usePage(); // Get data from Laravel
 const reports = computed(() => page.props.reports);
+const logHistory = computed(() => page.props.logHistory);
+
 const formatDate = (date) => {
     return dayjs(date).format("DD-MM-YYYY");
 };
@@ -115,6 +117,11 @@ watch(checked, (value) => {
 //     }
 // })
 
+const BubbleRed = (dataId) => {
+    return logHistory.value.some(log => log.report_id === dataId);
+
+}
+
 </script>
 
  
@@ -181,9 +188,13 @@ watch(checked, (value) => {
                             <Column field="" header="Action" style="width: 10%">
                                 <template #body="slotProps" >
                                     <div class="flex gap-1">
-                                        <Link :href="route('report.edit', slotProps.data.id)">
-                                            <i class="pi pi-file-edit" style="color: gray; font-size: 1.5rem" v-tooltip.top="'Detail'"></i>
-                                        </Link>
+                                        <div class="relative inline-block">
+                                            <Link :href="route('report.edit', slotProps.data.id)">
+                                                <!-- Bubble Merah -->
+                                                    <span v-if="BubbleRed(slotProps.data.id)" class="absolute -top-1 -right-1 w-3 h-3 bg-red-600 rounded-full"></span>
+                                                <i class="pi pi-file-edit" style="color: gray; font-size: 1.5rem" v-tooltip.top="'Detail'"></i>
+                                            </Link>
+                                        </div>
                                         <button @click="confirm2(slotProps.data)">
                                             <i class="pi pi-trash" style="color: red; font-size: 1.5rem" v-tooltip.top="'Delete'"></i>
                                         </button>
