@@ -44,7 +44,7 @@ const dept = ref([
         { name: 'RAW MATERIAL', code: 'raw_material' },
         { name: 'PRODUKSI', code: 'produksi' },
         { name: 'WAREHOUSE', code: 'warehouse' },
-        { name: 'Top Management', code: 'top_management' },
+        { name: 'TOP MANAGEMENT', code: 'top_management' },
     ]);
 
 const formReports = useForm({
