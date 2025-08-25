@@ -63,7 +63,7 @@ const optionDate = (report_date, revision_date) => {
                 </div>
                 <div class="flex gap-2 items-center mb-5">
                     <p class="font-semibold w-1/3">Tanggal Dibuat Laporan </p>
-                    <span class="font-semibold w-full ">: {{ optionDate(props.report.date_auditor, props.report.revision_date) }}</span>
+                    <span class="font-semibold w-full ">: {{ optionDate(props.report.date_report, props.report.revision_date) }}</span>
                 </div>
                 <p class="font-semibold">Telah menyampaikan laporan Digital ini kepada PT Chen
                     Woo Fishery bertanggung jawab secara hukum apabila laporan industri tahap produksi yang
