@@ -142,6 +142,16 @@ const props = defineProps({
 
 const users = ref(props.user);
 
+
+const canView = computed(() => {
+  return report.value.department === page.props.auth.user.department ||
+         (page.props.auth.user.department === 'QA' && hasPermission('List Comment'))
+});
+
+const disabledUpdate = computed(() => {
+  return report.value.department !== page.props.auth.user.department && hasPermission('Update Report');
+})
+
 </script>
 
 <template>
@@ -175,8 +185,8 @@ const users = ref(props.user);
                             <Avatar :label="getInitials(val.name)" class=" h-7 sm:h-7" shape="circle" :style="'background-color: #ece9'+getInitials(val.name)+'c; color: #2a1261'"/>
                         </div>
                         <div class="flex flex-col">
-                            <span class="font-semibold flex justify-between text-gray-600 text-sm" :style="formReportEdit.department == $page.props.auth.user.department || formReportEdit.department == 'QA' && hasPermission('List Comment') ? 'filter: blur(0px);' : 'filter: blur(3px);'">{{val.name}}<span class="text-[9px] text-gray-600 text-center">{{formatDate(val.created_at)}}</span></span>
-                            <span class="bg-gray-300 p-1 text-sm rounded " :style="formReportEdit.department == $page.props.auth.user.department || formReportEdit.department == 'QA' && hasPermission('List Comment') ? 'filter: blur(0px);' : 'filter: blur(3px);'" >{{val.comment}}</span>
+                            <span class="font-semibold flex justify-between text-gray-600 text-sm" :style="canView ? 'filter: blur(0px);' : 'filter: blur(3px);'">{{val.name}}<span class="text-[9px] text-gray-600 text-center">{{formatDate(val.created_at)}}</span></span>
+                            <span class="bg-gray-300 p-1 text-sm rounded " :style="canView ? 'filter: blur(0px);' : 'filter: blur(3px);'" >{{val.comment}}</span>
                         </div>
                     </div>
                 </div>
@@ -245,7 +255,7 @@ const users = ref(props.user);
                     <div class="flex justify-end gap-2 mt-2 p-2">
                         <Button label="Checked" severity="warn" @click="checkedReport" :disabled="page.props.report.checked_by !== null" />
                         <Button label="Verified" severity="info" @click="verifiedReport" :disabled="page.props.report.verified_by !== null || page.props.report.checked_by === null"/>
-                        <Button label="Update" severity="success" type="submit"/>
+                        <Button label="Update" severity="success" type="submit" :disabled="disabledUpdate"/>
                         <Button label="Clear" severity="clear" @click="clearInput"/>
                     </div>
                 </Form>
