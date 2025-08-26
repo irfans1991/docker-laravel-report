@@ -35,6 +35,7 @@ Route::middleware('auth')->group(function () {
                         ->count();
         $countChecked = Report::whereNull('verified_by')
                         ->where('checked_by', '!=', null)
+                        ->where('department', Auth::user()->dept)
                         ->whereNull('deleted_at')
                         ->count();
         $countPendingDept = Report::whereNull('verified_by')
