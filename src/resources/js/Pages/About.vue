@@ -23,30 +23,64 @@ const center = { lat: 40.689247, lng: -74.044502 }
 
 
 <template>
-    <Head title="About" />
-    <Header/>
-    <Transition name="slide-fade">
-        <div v-if="!show">
-            <Content>
-                <template #content-title>
-                    Contact
-                </template>
-                <template #content-body>
-                    <div>
-                        <h1>Contact</h1>
-                        <GoogleMap
-                        api-key="YOUR_GOOGLE_MAPS_API_KEY"
-                        style="width: 100%; height: 500px"
-                        :center="center"
-                        :zoom="15"
-                        >
-                          <Marker :options="{ position: center }" />
-                        </GoogleMap>
-                    </div>
-                </template>
-            </Content>
-        </div>
-    </Transition>
+        <Head title="About" />
+        <Header/>
+        <Transition name="slide-fade">
+            <div v-if="!show">
+                <Content>
+                    <template #content-title>
+                        Contact
+                    </template>
+                    <template #content-body>
+                        <div>
+                            <!-- Contact Section -->
+                                <section class="max-w-6xl mx-auto px-6 py-12 grid md:grid-cols-2 gap-10 items-center">
+                                <!-- Left: Info -->
+                                <div>
+                                    <h1 class="text-3xl font-bold mb-4">Contact Us</h1>
+                                    <p class="text-gray-600 mb-8">
+                                    If you have any questions or want to <span class="font-semibold">get a free estimate</span>
+                                    for your error situation, contact us via email or phone call. We will be very happy to help you!
+                                    </p>
+
+                                    <div class="space-y-4">
+                                    <div class="flex items-center space-x-3">
+                                        <i class="fas fa-phone text-blue-600"></i>
+                                        <span class="text-lg">+62 811 414 750</span>
+                                    </div>
+
+                                    <div class="flex items-center space-x-3">
+                                        <i class="fas fa-envelope text-blue-600"></i>
+                                        <span class="text-lg">irfan@chenwoofishery.com</span>
+                                    </div>
+
+                                    <div class="flex items-center space-x-3">
+                                        <i class="fas fa-map-marker-alt text-blue-600"></i>
+                                        <span class="text-lg">CWF TECH - PT. CHEN WOO FISHERY MAKASSAR</span>
+                                    </div>
+
+                                    <div class="flex items-center space-x-3">
+                                        <i class="fas fa-clock text-blue-600"></i>
+                                        <span class="text-lg">Monday - Friday: 8:30 am - 4:30 pm</span>
+                                    </div>
+                                    </div>
+                                </div>
+
+                                <!-- Right: Image -->
+                                <div class="flex justify-center">
+                                    <img 
+                                    src="../../img/e-report.png" 
+                                    alt="Contact" 
+                                    class="rounded-2xl shadow-lg max-w-sm w-full object-cover"
+                                    />
+                                </div>
+                                </section>
+                        </div>
+                    </template>
+                </Content>
+            </div>
+        </Transition> 
+</template>
     <!-- start Content about -->
 
     <!-- <div class="container mx-auto max-w-screen-xl lg:px-6 py-2.5">
@@ -73,4 +107,18 @@ const center = { lat: 40.689247, lng: -74.044502 }
             {{ name }} - {{ age }} years old
         </h1>
     </div> -->
-</template>
+
+<style scoped>
+/* Animasi transisi mirip slide-fade */
+.slide-fade-enter-active {
+  transition: all 0.5s ease;
+}
+.slide-fade-leave-active {
+  transition: all 0.3s ease;
+}
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  opacity: 0;
+  transform: translateY(10px);
+}
+</style>
