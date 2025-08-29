@@ -21,6 +21,7 @@
         "@primevue/forms": "^4.2.5",
         "@primevue/themes": "^4.2.5",
         "@vitejs/plugin-vue": "^5.2.1",
+        "chart.js": "^4.5.0",
         "dayjs": "^1.11.13",
         "flowbite": "^3.1.2",
         "flowbite-vue": "^0.1.7",

@@ -10,6 +10,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\SummaryController;
 use App\Http\Controllers\feedbackController;
 
 
@@ -97,6 +98,10 @@ Route::middleware('guest')->group(function () {
     Route::inertia('/auth/login', 'auth/Login')->name('login');
     Route::get('/auth/register', [AuthController::class, 'showRegister'])->name('register');
     Route::post('/auth/login', [AuthController::class, 'login'])->name('auth.login');
+});
+
+Route::prefix('summary')->middleware('auth')->group(function () {
+    Route::get('/', [SummaryController::class, 'index'])->name('summary.index');
 });
 
 
