@@ -33,7 +33,9 @@ class ReportController extends Controller
 
         if ($request->filled('search')) {
             $searchTerm = trim($request->search);
-            $query->whereRaw('LOWER(title) LIKE ?', ['%' . strtolower($searchTerm) . '%']);
+            $query->whereRaw('LOWER(title) LIKE ?', ['%' . strtolower($searchTerm) . '%'])
+                  ->orWhereRaw('LOWER(no_document) LIKE ?', ['%' . strtolower($searchTerm) . '%'])
+                  ->orWhereRaw('LOWER(name) LIKE ?', ['%' . strtolower($searchTerm) . '%']);
         }
 
         if ($request->filled(['start_date', 'end_date'])) {
