@@ -149,7 +149,7 @@ const canView = computed(() => {
 });
 
 const disabledUpdate = computed(() => {
-  return report.value.department !== page.props.auth.user.department && hasPermission('Update Report');
+  return report.value.name === page.props.auth.user.firstname && hasPermission('Update Report');
 })
 
 </script>
